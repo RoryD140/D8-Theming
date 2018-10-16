@@ -1,0 +1,37 @@
+<?php
+/**
+ * @file
+ * Contains good_module.module.
+ */
+
+
+/*
+ * Here are some things that you're probably better off doing in PHP instead of Twig!
+ */
+
+/**
+ * Implements hook_ENTITY_TYPE_view().
+ * @param array $build
+ * @param Paragraph $paragraph
+ * @param \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display
+ * @param $view_mode
+ */
+function nnphi_training_paragraph_view(array &$build, Paragraph $paragraph, EntityViewDisplayInterface $display, $view_mode)
+{
+
+  // Here's how you attach a library
+
+  // If you have a boolean checkbox field, and you want to add a class to your paragraph if it's checked,
+  // it's easier to do something like this than to dig through your twig markup
+  if ((int)$paragraph->get('field_add_color_background')->getString() === 1) {
+    $build['#attributes']['class'][] = 'color-background';
+  }
+
+
+  // If you want to just add a string value without all the field markup, something like this works!
+  // This gets just the URL from a link field. In your twig template, it'd be under {{ content.my_url }}
+  if($paragraph->hasField('field_url') && !$paragraph->get('field_my_link')->isEmpty()) {
+    $build['my_url']['#markup'] = $paragraph->get('field_my_link')->first()->getUrl()->toString();
+  }
+}
+

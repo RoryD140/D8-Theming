@@ -1,0 +1,30 @@
+{# Noooooooooo #}
+{# Stuff you should probably avoid, all of which your humble instructor did on some of his first D8 projects #}
+
+
+{# No no no! #}
+{# Any time you're using a # symbol, it should be a red flag! #}
+{# Also, there's untranslated text, another no no.#}
+<a href="{{ link.0['#url'] }}">Link Text</a>
+
+
+
+{# Yuck! #}
+{# Should've used the |render filter instead#}
+{# Should not have used the raw filter. #}
+{# Should have stripped the markup in the field template instead of doing this crap. #}
+{# 0/10, would not do again. #}
+{% if content.field_course_address.0.country['#value'] %}
+  {{- content.field_course_address.0.country['#value']|raw -}}
+{% endif %}
+
+
+{# Woof!#}
+{# Should've done this interpolation in PHP #}
+{# Should not hack through the render array like that. #}
+{# I think the only thing the trans tags did was get the pull request merged #}
+{% trans %}
+  <p>
+    <strong>Price: {{ content.field_currency[0]['#markup'] }} {{ content.field_price[0]['#markup'] }}</strong>
+  </p>
+{% endtrans %}

@@ -1,0 +1,97 @@
+<article{{ attributes.addClass('training-node') }}>
+  <div{{ content_attributes }}>
+    {# background is temporary until we decide which term we're using #}
+    <section class="training-hero hero">
+      <div class="training-hero-interior">
+        <div class="search-back">
+          {# Filled in via JS; see training-page.js #}
+        </div>
+        {% include base_path ~ directory ~ '/templates/components/social-share.html.twig' %}
+        <div class="training-hero-text">
+          <div class="training-hero-source">
+            {{ content.field_training_source }}
+          </div>
+          <h1>{{ label }}</h1>
+          {# From nnphi_training.module #}
+          {{ content.subtitle }}
+          {% if content.field_training_url|render %}
+            <div class="training-hero-btn">
+              {{ content.field_training_url }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="training-details">
+      <div class="training-details-container">
+        <div class="training-details-row">
+          <div class="training-details-dates">
+            {# <nobr> keeps hyphenated dates from line breaking at hyphens #}
+            <div>{{ 'Date Added to Navigator'|t }} <span><nobr>{{  content.field_training_published_date }}</nobr></span></div>
+            {% if content.field_training_expiration_date|render %}
+              <div>{{ 'Expires'|t }} <span>{{ content.field_training_expiration_date }}</span></div>
+            {% endif %}
+          </div>
+          {% if content.field_training_state|render %}
+            <div class="training-details-state">
+             {{ content.field_training_state }}
+            </div>
+          {% endif %}
+          {{ content.field_training_ceus_offered }}
+          {{ content.field_training_cost }}
+          {{ content.field_training_access_difficulty }}
+          {{ content.field_training_total_time }}
+        </div>
+      </div>
+    </section>
+
+    <section class="training-text">
+      <div class="training-text-row">
+        {% if content.field_training_instructor|render or content.field_training_description|render %}
+          <div class="training-text-overview">
+            <h2 class="training-subtitle">{{ 'Overview'|t }}</h2>
+            {{ content.field_training_review_overall }}
+            {{ content.flag_bookmark }}
+            {{ content.field_training_instructor }}
+            {{ content.field_training_description }}
+          </div>
+        {% endif %}
+        <div class="training-text-objectives">
+          {{ content.field_training_objectives }}
+          {% if content.field_training_competencies|render %}
+            <div class="training-competencies">
+              {{ content.field_training_competencies }}
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+    </section>
+
+    <section class="training-terms">
+      <div class="training-terms-row">
+        {% if content.field_training_occupations|render %}
+          <div class="training-occupations">
+            {{ content.field_training_occupations }}
+          </div>
+        {% endif %}
+        {{ content.field_training_job_tasks }}
+      </div>
+    </section>
+
+    {% if content.field_related_trainings|render %}
+      <section class="training-related">
+        {{ content.field_related_trainings }}
+      </section>
+    {% endif %}
+
+    {% if content.field_training_reviews|render or content.review_login_message|render %}
+      <section class="training-reviews">
+        {{ content.field_training_reviews }}
+        {{ content.review_login_message }}
+      </section>
+    {% endif %}
+
+  </div>
+</article>

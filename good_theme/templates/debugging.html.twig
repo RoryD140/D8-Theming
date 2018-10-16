@@ -1,0 +1,17 @@
+{# Here are a bunch of ways to debug your twig templates #}
+
+{# Dumps all of the content. Will cause a timeout a lot of the time. Not the best way to do it#}
+{{ dump(content) }}
+
+{# Dumps just your content array keys — useful if you want to see if a field even exists or not #}
+{{ dump(content|keys) }}
+
+{# Dumps all the keys for everything in the current context #}
+{{ dump(_context|keys) }}
+
+{# Kints your content #}
+{{ kint(content) }}
+
+{# If you have twig_xdebug installed and configured, this will break and show all of your variables #}
+{# This is extremely dope and good if you're doing stuff like creating your own template to use in a custom module #}
+{{ breakpoint() }}

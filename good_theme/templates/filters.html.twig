@@ -1,0 +1,79 @@
+{# Here are a bunch of fun filters you can use in twig #}
+
+{#
+ # Render filter!
+ # This is a filter you can use if you want to display markup if a field has a value
+ #}
+
+
+{# This will only be displayed if field_good_field actually has a field #}
+{% if content.field_good_field|render %}
+  <aside class="good-class">
+    <div class="great-class">
+      {{ content.field_good_field }}
+    </div>
+  </aside>
+{% endif %}
+
+
+{# DO THIS AT YOUR OWN DANGER! The if filter checks if an array is empty, and the array won't be empty even if no
+field value has been entered #}
+
+{% if content.field_good_field %}
+  <aside class="good-class">
+    <div class="great-class">
+      {{ content.field_good_field }}
+    </div>
+  </aside>
+{% endif %}
+
+
+{#
+ # Translate filter!
+ # This is a filter you can use if you want to make sure your strings are available for translation
+ # You should probably do this for any string in your templates
+ #}
+
+{# These are the same #}
+{{ 'My static text'|t }}
+{% trans %}My static text{% endtrans %}
+
+{# You _can_ do interpolation in twig, but PHP is better at it. #}
+
+
+
+{# Trim
+ # Trim removes whitespace from the beginning and end of a string. If you can't get an inline background image to work,
+ # this is often the case.
+ #}
+<div style="background-image:{{img_url|trim }};">
+  {{ content }}
+</div>
+
+
+{# Spaceless
+ # Spaceless removes all the spaces. I've had to do stuff like this before. It's ugly.
+ #}
+<div style="background-image:{% spaceless %}{{img_url|trim }}{% endif %};">
+  {{ content }}
+</div>
+
+
+{#
+ # Other filters!
+ # Warning: opinions ahead
+#}
+
+
+{# Number filter #}
+{# You can do stuff like this, but you should at least ask yourself if it's better to do in PHP #}
+{{ 9800.333|number_format(2, '.', ',') }}
+
+
+{# Raw filter #}
+{# Please don't do this. #}
+{{ variable_a_user_inputted_on_a_form_to_hack_your_site|raw }}
+
+{# Escape filter #}
+{# I guess you could do this, but it seems weird #}
+{{ user.username|e }}

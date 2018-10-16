@@ -1,0 +1,31 @@
+# These will be available for the responsive image module and any other module that needs breakpoints
+good_theme.xs:
+  label: xs
+  mediaQuery: 'all and (max-width: 575px)'
+  weight: 1
+  multipliers:
+    - 1x
+good_theme.sm:
+  label: sm
+  mediaQuery: 'all and (min-width: 576px) and (max-width: 767px)'
+  weight: 2
+  multipliers:
+    - 1x
+good_theme.md:
+  label: md
+  mediaQuery: 'all and (min-width: 768px) and (max-width: 991px)'
+  weight: 3
+  multipliers:
+    - 1x
+good_theme.lg:
+  label: lg
+  mediaQuery: 'all and (min-width: 992px) and (max-width: 1199px)'
+  weight: 4
+  multipliers:
+    - 1x
+good_theme.xl:
+  label: xl
+  mediaQuery: 'all and (min-width: 1200px)'
+  weight: 5
+  multipliers:
+    - 1x

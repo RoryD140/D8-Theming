@@ -1,0 +1,26 @@
+<?php
+/**
+ * @file
+ * Functions to support theming in the Osher Pattern Lab theme.
+ */
+
+use Drupal\paragraphs\Entity\Paragraph;
+
+
+/**
+ * Implements hook_preprocess_HOOK().
+ */
+function osher_pl_preprocess_paragraph(&$variables) {
+
+  /** @var Paragraph $paragraph */
+  $paragraph = $variables['elements']['#paragraph'];
+
+
+  // Here's how you attach a library to a single paragraph type
+  // You can also do the same thing with a node or do it by other conditions
+  if ($paragraph->getType() === 'slider') {
+    $variables['#attached']['library'][] = 'osher_pl/slider';
+  }
+}
+
+?>

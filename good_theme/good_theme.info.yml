@@ -1,0 +1,26 @@
+name: Good theme
+type: theme
+description: Good theme theme
+package: Good
+core: 8.x
+
+# Put regions here
+regions:
+  content: Content
+  header: Header
+  main_nav: Main Nav
+  footer_left: Footer Left
+  footer_mid: Footer Middle
+  footer_right: Footer Right
+  footer_bottom: Footer Bottom
+
+libraries:
+  - good_theme/base
+
+# These will be used in CKEditor, if you want CKEditor to have access to your stylesheet
+ckeditor_stylesheets:
+  - style.css
+
+# You can use any theme here. Your theme will use these stylesheets and templates
+base theme: stable
+

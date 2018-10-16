@@ -1,0 +1,33 @@
+{# Loops! #}
+
+{#
+ # Twig has great loop functionality. Here are some of the stuff you can do.
+#}
+
+
+
+{#
+ # Add an active class to the first item
+ # (There's a more succint way to do this, but split it out for clarity)
+ #}
+{% for item in items %}
+  {% if loop.first %}
+    <li{{ item.attributes.addClass('is-active') }}>
+  {% else %}
+    <li{{ item.attributes }}>
+  {% endif %}
+  {{ item.content }}</li>
+{% endfor %}
+
+
+{#
+ # Create a comma-separated list
+ #}
+{% for item in items %}
+  {% if loop.last %}
+    {{ item.content }}
+  {% else %}
+    {{ item.content }},
+  {% endif %}
+{% endfor %}
+

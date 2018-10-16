@@ -1,0 +1,50 @@
+{# Some good twig functions #}
+
+
+{#
+ # Date!
+ # This works the same PHP's date function, more or less
+ #}
+
+{# This will display the node's created time in the "training_date" style you created through the date UI #}
+{{ node.getCreatedTime()|format_date('training_date') }}
+
+{# This will display the node's created year #}
+{{ node.getCreatedTime()|format_date('Y') }}
+
+
+
+{#
+ # Includes!
+ # This will include another twig template
+ # Variables from the current context are inherited
+ #}
+
+{# If we have this file in our theme, it'll render the whole component #}
+{% include base_path ~ directory ~ '/templates/components/social-share.html.twig' %}
+
+
+{# If you want to add your own variables, you can do something like this #}
+{% include ( directory ~ '/templates/components/reusable-card-template.html.twig')
+  with {
+  'title': content.field_section_title,
+  'intro': content.field_section_intro,
+  'cards': content.field_two_up_cards,
+} %}
+
+
+
+{#
+ # Links and paths!
+ # Drupal 8 has a lot of different ways to cook up links
+ # I find that 90% of the time I do this in preprocessing, but sometimes that's overkill
+ #}
+
+{# Path — useful if you're working with routes or linking to a node #}
+<a href="{{ path('entity.node.canonical', {'node': node.id}) }}">{{ 'Link to this node'|t }}</a>
+
+{# Link — useful if you want to generate a link with some classes  #}
+{{ link(item.title, item.url, { 'class':['foo', 'bar', 'baz']} ) }}
+
+{# Url — similar to path. Returns an absolute URL #}
+<a href="{{ url('<front>') }}">{{ 'Home'|t }}</a>

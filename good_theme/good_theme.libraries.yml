@@ -1,0 +1,17 @@
+# This is a library file. Be really careful with the syntax! YML files are very picky
+# This library is added to the whole theme — see good_theme.info.yml
+base:
+  version: VERSION
+  css:
+    theme:
+      style.css: {}
+
+# This library is only added to the slider paragraph type
+slider:
+  version: VERSION
+  js:
+   js/slick-slider.min.js: {}
+   js/slick-slider-init.js: {}
+  dependencies:
+   - core/jquery
+   - core/jquery.once
